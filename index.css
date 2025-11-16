@@ -1,0 +1,112 @@
+body {
+  background: #fff;
+  font-family: Arial, sans-serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  transition: background 0.5s, color 0.5s;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px;
+}
+.menu-icon { font-size: 2rem; cursor: pointer; }
+.logo { width: 40px; }
+.theme-toggle span { margin: 0 4px; cursor: pointer; font-size: 1.5rem; }
+
+.calculator {
+  background: #ccc;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.20);
+  padding: 20px;
+  width: 320px;
+  margin: 24px auto;
+  text-align: center;
+}
+.display {
+  width: 90%;
+  height: 50px;
+  font-size: 2rem;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: none;
+  padding: 8px;
+  text-align: right;
+}
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+button {
+  height: 50px;
+  font-size: 1.3rem;
+  border-radius: 12px;
+  border: none;
+  margin: 4px;
+  box-shadow: 0 2px 4px #aaa;
+  background: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+button:active {
+  box-shadow: inset 0 0 4px #444;
+  transform: scale(0.96);
+}
+button.operator { background: #fff; color: #222; font-weight: bold; }
+button.clear { background: #eee; font-weight: bold; }
+button.equals { background: #00afff; color: #fff; }
+button.scientific { background: #fb0; }
+.history-pane { display: none; background: #f9f9f9; padding: 10px; border-radius: 8px; margin: 10px 0; }
+
+.currency-section {
+  background: #ddd;
+  border-radius: 14px;
+  width: 400px;
+  margin: 30px auto 0 auto;
+  padding: 16px;
+}
+.currency-section h2 { margin-top: 0; }
+.currency-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+.currency-row select {
+  font-size: 1.1rem;
+  border-radius: 7px;
+  padding: 3px 12px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+#fiatPriceBox,
+#cryptoPriceBox {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 24px;
+  font-size: 1.3rem;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 7px #bbb;
+}
+
+body.theme-dark {
+  background: #181818;
+  color: #eee;
+}
+body.theme-dark .calculator,
+body.theme-dark .currency-section { background: #222; }
+body.theme-dark .display { background: #333; color: #fee; }
+body.theme-dark button { background: #444; color: #eee; }
+body.theme-dark #fiatPriceBox, body.theme-dark #cryptoPriceBox {
+  background: #222; color: #eee;
+}
