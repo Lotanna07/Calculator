@@ -13,7 +13,13 @@ header nav {
   margin: 16px;
 }
 .menu-icon { font-size: 2rem; cursor: pointer; }
-.logo { width: 40px; }
+.logo {
+     width: 40px;  
+     height: 40px;
+     border-radius: 50%;
+     margin-left: 60px;
+
+    }
 .theme-toggle span { margin: 0 4px; cursor: pointer; font-size: 1.5rem; }
 
 .calculator {
@@ -59,7 +65,7 @@ button:active {
 }
 button.operator { background: #fff; color: #222; font-weight: bold; }
 button.clear { background: #eee; font-weight: bold; }
-button.equals { background: #00afff; color: #fff; }
+button.equals { background: #ff0000; color: #fff; }
 button.scientific { background: #fb0; }
 .history-pane { display: none; background: #f9f9f9; padding: 10px; border-radius: 8px; margin: 10px 0; }
 
@@ -109,4 +115,22 @@ body.theme-dark .display { background: #333; color: #fee; }
 body.theme-dark button { background: #444; color: #eee; }
 body.theme-dark #fiatPriceBox, body.theme-dark #cryptoPriceBox {
   background: #222; color: #eee;
+}
+
+
+
+/* Glowing animated background for the whole page */
+body.theme-glowing {
+  background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff0000);
+  background-size: 800% 800%;
+  animation: glowAnimation 20s ease infinite;
+  color: white; /* adjust text color for glowing bg */
+  transition: background 0.5s ease;
+}
+
+/* Keyframes for smooth glowing animation */
+@keyframes glowAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

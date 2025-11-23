@@ -80,8 +80,8 @@ document.getElementById('darkModeIcon').onclick = () =>
   document.body.className = 'theme-dark';
 document.getElementById('lightModeIcon').onclick = () =>
   document.body.className = 'theme-light';
-document.getElementById('paletteIcon').onclick = () =>
-  document.body.className = 'theme-retro'; // Add retro theme to CSS if required
+document.getElementById('glowing-background').onclick = () =>
+  document.body.className = 'theme-glowing'; // Add retro theme to CSS 
 
 // Currency API Integration (uses CoinGecko for demo)
 const fiatDropdown = document.getElementById('fiatDropdown');
