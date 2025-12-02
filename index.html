@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Calculator & Currency Prices</title>
-  <link rel="stylesheet" href="index.css"/>
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body class="theme-light">
   <header>
     <nav>
       <span class="menu-icon">&#9776;</span>
-      <img src="loti.jpg" alt="Logo" class="logo"/>
+      <img src="loti.jpg" alt="Logo" class="logo" />
       <div class="theme-toggle">
         <span id="darkModeIcon"><img src="darkModeIcon.svg" alt="My SVG Image" /></span>
         <span id="lightModeIcon"><img src="lightModeIcon.svg" alt="My SVG Image" /></span>
@@ -18,6 +19,7 @@
       </div>
     </nav>
   </header>
+
   <main>
     <div class="calculator">
       <input type="text" class="display" id="display" disabled />
@@ -39,35 +41,34 @@
         <button class="number">0</button>
         <button class="number">1</button>
         <button class="equals">=</button>
-        <!-- Optional: Scientific button example -->
         <button class="scientific">√</button>
       </div>
       <div id="historyPane" class="history-pane"></div>
     </div>
+
     <section class="currency-section">
       <h2>Currency Market Price</h2>
       <div class="currency-row">
         <select id="fiatDropdown">
           <option value="usd">USD</option>
           <option value="eur">EUR</option>
-          <option value="bitcoin">BTC</option>
-          <option value="ethereum">ETH</option>
-          <option value="solana">SOL</option>
+          <option value="gbp">GBP</option>
         </select>
-        <select id="cryptoDropdown">
-          <option value="bitcoin">BTC</option>
-          <option value="ethereum">ETH</option>
-          <option value="solana">SOL</option>
-          <option value="usd">USD</option>
 
+        <select id="cryptoDropdown">
+          <option value="bitcoin">Bitcoin (BTC)</option>
+          <option value="ethereum">Ethereum (ETH)</option>
+          <option value="solana">Solana (SOL)</option>
         </select>
       </div>
+
       <div class="price-row">
         <div id="fiatPriceBox">Loading...</div>
         <div id="cryptoPriceBox">Loading...</div>
       </div>
     </section>
   </main>
+
   <script src="index.js"></script>
 </body>
 </html>

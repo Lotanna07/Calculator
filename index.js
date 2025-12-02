@@ -7,6 +7,7 @@ let history = [];
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     const val = btn.textContent;
+
     if (btn.classList.contains('number') || val === '.') {
       currentInput += val;
       display.value = currentInput;
@@ -28,7 +29,6 @@ buttons.forEach(btn => {
       currentInput = '';
       display.value = '';
     } else if (btn.classList.contains('scientific')) {
-      // Example: sqrt of number
       try {
         const res = Math.sqrt(parseFloat(currentInput));
         display.value = res;
@@ -76,47 +76,44 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Theme Toggle
-document.getElementById('darkModeIcon').onclick = () =>
-  document.body.className = 'theme-dark';
-document.getElementById('lightModeIcon').onclick = () =>
-  document.body.className = 'theme-light';
-document.getElementById('glowing-background').onclick = () =>
-  document.body.className = 'theme-glowing'; // Add retro theme to CSS 
+document.getElementById('darkModeIcon').onclick = () => document.body.className = 'theme-dark';
+document.getElementById('lightModeIcon').onclick = () => document.body.className = 'theme-light';
+document.getElementById('glowing-background').onclick = () => document.body.className = 'theme-glowing';
 
-// Currency API Integration (uses CoinGecko for demo)
+// Currency API Integration (CoinGecko)
 const fiatDropdown = document.getElementById('fiatDropdown');
 const cryptoDropdown = document.getElementById('cryptoDropdown');
 const fiatPriceBox = document.getElementById('fiatPriceBox');
 const cryptoPriceBox = document.getElementById('cryptoPriceBox');
 
-function fetchPrices() {
-  const fiat = fiatDropdown.value;
-  const crypto = cryptoDropdown.value;
+async function fetchPrices() {
+  const fiat = fiatDropdown.value.toLowerCase();
+  const crypto = cryptoDropdown.value.toLowerCase();
 
-  // Crypto price
-  fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}`)
-    .then(res => res.json())
-    .then(data => {
-      const price = data[crypto][fiat];
-      cryptoPriceBox.textContent = price ? `${price} ${fiat.toUpperCase()}` : 'Error';
-    }).catch(() => {
-      cryptoPriceBox.textContent = 'Error';
-    });
+  cryptoPriceBox.textContent = "Loading...";
 
-  // Fiat to USD/EUR using CoinGecko (for simplicity, shows USD/EUR value as "1")
-  if (fiat === 'usd') {
-    fiatPriceBox.textContent = "1 USD";
-  } else if (fiat === 'eur') {
-    fiatPriceBox.textContent = "1 EUR";
+  try {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=${fiat}`
+    );
+
+    const data = await response.json();
+    const price = data[crypto]?.[fiat];
+
+    if (price) {
+      cryptoPriceBox.textContent = `1 ${crypto.toUpperCase()} = ${price.toLocaleString()} ${fiat.toUpperCase()}`;
+    } else {
+      cryptoPriceBox.textContent = "Price not available";
+    }
+  } catch (error) {
+    cryptoPriceBox.textContent = "Error fetching price";
   }
+
+  fiatPriceBox.textContent = `1 ${fiat.toUpperCase()}`;
 }
 
-// Fetch prices on selection change
-fiatDropdown.onchange = fetchPrices;
-cryptoDropdown.onchange = fetchPrices;
-
-// Auto-refresh every 60 seconds
+fiatDropdown.addEventListener('change', fetchPrices);
+cryptoDropdown.addEventListener('change', fetchPrices);
+fetchPrices();
 setInterval(fetchPrices, 60000);
 
-// Initial fetch
-fetchPrices();
